@@ -115,8 +115,8 @@ $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 	@mkdir -p out/atmosphere/titles/0100000000000352
-	@rm -rf atmosphere/titles/0100000000000352/exefs.nsp
-	@cp $(OUTPUT).nsp atmosphere/titles/0100000000000352/exefs.nsp
+	@rm -rf out/atmosphere/titles/0100000000000352/exefs.nsp
+	@cp $(OUTPUT).nsp out/atmosphere/titles/0100000000000352/exefs.nsp
 
 #---------------------------------------------------------------------------------
 clean:
