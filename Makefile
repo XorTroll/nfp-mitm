@@ -111,12 +111,14 @@ endif
 #---------------------------------------------------------------------------------
 all: $(BUILD)
 
+SHELL	= /bin/bash
+
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@$(MAKE) --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
-	@mkdir -p out/atmosphere/titles/0100000000000352
-	@rm -rf out/atmosphere/titles/0100000000000352/exefs.nsp
-	@cp $(OUTPUT).nsp out/atmosphere/titles/0100000000000352/exefs.nsp
+	@mkdir -p out/{atmosphere,ReiNX}/titles/0100000000000352
+	@rm -rf out/*/titles/0100000000000352/exefs.nsp
+	@tee out/{atmosphere,ReiNX}/titles/0100000000000352/exefs.nsp < $(OUTPUT).nsp > /dev/null
 
 #---------------------------------------------------------------------------------
 clean:
