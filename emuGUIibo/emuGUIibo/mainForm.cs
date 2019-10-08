@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Linq;
@@ -6,15 +8,20 @@ using System.Windows.Forms;
 
 namespace emuGUIibo
 {
-    public partial class mainForm : Form
+    public partial class mainForm : MaterialForm
     {
         public mainForm()
         {
             InitializeComponent();
 
+            var materialSkinManager = MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
+
             if (AmiiboAPI.GetAllAmiibos())
             {
-                toolStripStatusLabel1.Text = "Amiibo API was accessed. Amiibo list was loaded.";
+                materialLabel3.Text = "Amiibo API was accessed. Amiibo list was loaded.";
+                pictureBox2.Image = Properties.Resources.accept;
 
                 if (AmiiboAPI.AmiiboSeries.Any())
                 {
@@ -28,12 +35,8 @@ namespace emuGUIibo
             }
             else
             {
-                toolStripStatusLabel1.Text  = "Unable to download amiibo list from amiibo API.";
-                toolStripStatusLabel1.Image = Properties.Resources.cancel;
-
-                groupBox1.Enabled = false;
-                groupBox2.Enabled = false;
-                groupBox3.Enabled = false;
+                materialLabel3.Text  = "Unable to download amiibo list from amiibo API.";
+                pictureBox2.Image = Properties.Resources.cancel;
             }
         }
 
@@ -58,12 +61,12 @@ namespace emuGUIibo
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             pictureBox1.ImageLocation = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().ImageURL;
-            textBox1.Text             = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().AmiiboName;
+            materialSingleLineTextField1.Text             = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().AmiiboName;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox1.Text))
+            if (string.IsNullOrEmpty(materialSingleLineTextField1.Text))
             {
                 MessageBox.Show("No amiibo name was specified.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -99,14 +102,14 @@ namespace emuGUIibo
 
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog
             {
-                Description         = "Select root directory to generate the virtual amiibo on",
+                Description = "Select root directory to generate the virtual amiibo on",
                 ShowNewFolderButton = false,
-                SelectedPath        = emuiiboDir
+                SelectedPath = emuiiboDir
             };
 
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                string amiiboDir = Path.Combine(folderBrowserDialog.SelectedPath, textBox1.Text);
+                string amiiboDir = Path.Combine(folderBrowserDialog.SelectedPath, materialSingleLineTextField1.Text);
 
                 if (MessageBox.Show($"Virtual amiibo will be created in '{amiiboDir}'.{Environment.NewLine + Environment.NewLine}The directory will be deleted if it already exists.{Environment.NewLine + Environment.NewLine}Proceed with amiibo creation?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)
                 {
@@ -124,7 +127,7 @@ namespace emuGUIibo
 
                     JObject tag = new JObject();
 
-                    if (checkBox1.Checked)
+                    if (materialCheckBox1.Checked)
                     {
                         tag["randomUuid"] = true;
                     }
@@ -146,9 +149,9 @@ namespace emuGUIibo
 
                     JObject register = new JObject()
                     {
-                        ["name"]           = textBox1.Text,
+                        ["name"] = materialSingleLineTextField1.Text,
                         ["firstWriteDate"] = dateTime,
-                        ["miiCharInfo"]    = "mii-charinfo.bin"
+                        ["miiCharInfo"] = "mii-charinfo.bin"
                     };
 
                     File.WriteAllText(Path.Combine(amiiboDir, "register.json"), register.ToString());
@@ -156,8 +159,8 @@ namespace emuGUIibo
                     JObject common = new JObject()
                     {
                         ["lastWriteDate"] = dateTime,
-                        ["writeCounter"]  = 0,
-                        ["version"]       = 0
+                        ["writeCounter"] = 0,
+                        ["version"] = 0
                     };
 
                     File.WriteAllText(Path.Combine(amiiboDir, "common.json"), common.ToString());
