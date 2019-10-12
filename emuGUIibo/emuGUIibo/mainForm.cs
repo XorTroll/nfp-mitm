@@ -104,8 +104,14 @@ namespace emuGUIibo
                 SelectedPath        = emuiiboDir
             };
 
+            folderBrowserDialog.SelectedPath = Properties.Settings.Default.Folder_Path;
+
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
+
+                Properties.Settings.Default.Folder_Path = folderBrowserDialog.SelectedPath;
+                Properties.Settings.Default.Save();
+
                 string amiiboDir = Path.Combine(folderBrowserDialog.SelectedPath, textBox1.Text);
 
                 if (MessageBox.Show($"Virtual amiibo will be created in '{amiiboDir}'.{Environment.NewLine + Environment.NewLine}The directory will be deleted if it already exists.{Environment.NewLine + Environment.NewLine}Proceed with amiibo creation?", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) != DialogResult.OK)

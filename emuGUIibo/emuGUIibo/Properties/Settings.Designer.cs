@@ -26,5 +26,7 @@ namespace emuGUIibo.Properties
                 return defaultInstance;
             }
         }
+
+        public string Folder_Path { get; internal set; }
     }
 }

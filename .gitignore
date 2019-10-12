@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/emuGUIibo/.vs/emuGUIibo/v16
+/emuGUIibo/emuGUIibo/bin/Debug
+/emuGUIibo/emuGUIibo/obj/Debug
