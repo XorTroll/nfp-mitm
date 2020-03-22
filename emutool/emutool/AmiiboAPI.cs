@@ -6,13 +6,18 @@ using System.Net;
 
 namespace emutool
 {
-    public class Amiibo
+    public class Amiibo : IComparable<Amiibo>
     {
         public string AmiiboName    { get; set; }
         public string SeriesName    { get; set; }
         public string CharacterName { get; set; }
         public string ImageURL      { get; set; }
         public string AmiiboId      { get; set; }
+
+        public int CompareTo(Amiibo other)
+        {
+            return this.AmiiboName.CompareTo(other.AmiiboName);
+        }
     }
 
     static class AmiiboAPI
@@ -43,6 +48,8 @@ namespace emutool
                                                              + amiibo["tail"].ToString()
                     });
                 }
+                AmiiboSeries.Sort();
+                AllAmiibo.Sort();
 
                 return true;
             }
