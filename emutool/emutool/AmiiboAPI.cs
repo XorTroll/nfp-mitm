@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +7,49 @@ using System.Net;
 
 namespace emutool
 {
+
+    public class Rootobject
+    {
+        public Amiibo[] amiibo { get; set; }
+    }
+
     public class Amiibo : IComparable<Amiibo>
     {
-        public string AmiiboName    { get; set; }
-        public string SeriesName    { get; set; }
-        public string CharacterName { get; set; }
-        public string ImageURL      { get; set; }
-        public string AmiiboId      { get; set; }
-
+        public string amiiboSeries { get; set; }
+        public string character { get; set; }
+        public string gameSeries { get; set; }
+        public string head { get; set; }
+        public string image { get; set; }
+        public string name { get; set; }
+        public Release release { get; set; }
+        public string tail { get; set; }
+        public string type { get; set; }
+        public string ID { get; set; }
         public int CompareTo(Amiibo other)
         {
-            return this.AmiiboName.CompareTo(other.AmiiboName);
+            return this.name.CompareTo(other.name);
+        }
+    }
+
+    public class Release
+    {
+        public string au { get; set; }
+        public string eu { get; set; }
+        public string jp { get; set; }
+        public string na { get; set; }
+    }
+
+    public class AmiiboSeries : IComparable<AmiiboSeries>
+    {
+        public string amiiboSeries { get; set; }
+        public List<Amiibo> Amiibos { get; set; }
+        public int CompareTo(AmiiboSeries other)
+        {
+            return this.amiiboSeries.CompareTo(other.amiiboSeries);
+        }
+        public override string ToString()
+        {
+            return amiiboSeries;
         }
     }
 
@@ -24,36 +57,39 @@ namespace emutool
     {
         private const string AMIIBO_API_URL = "https://www.amiiboapi.com/api/amiibo/";
 
-        public static List<string> AmiiboSeries = new List<string>();
-        public static List<Amiibo> AllAmiibo    = new List<Amiibo>();
+        public static List<AmiiboSeries> AmiiboSeries = new List<AmiiboSeries>();
 
         public static bool GetAllAmiibos()
         {
-            try
+            //try
             {
-                JObject json = JObject.Parse(new WebClient().DownloadString(AMIIBO_API_URL));
-
-                foreach (JToken amiibo in json["amiibo"])
+                using (WebClient wb = new WebClient())
                 {
-                    if (AmiiboSeries.Where(serie => serie == amiibo["amiiboSeries"].ToString()).Count() == 0)
+                    Amiibo[] json = JsonConvert.DeserializeObject<Rootobject>(wb.DownloadString(AMIIBO_API_URL)).amiibo;
+                    Console.WriteLine(json);
+                    foreach (Amiibo amiibo in json)
                     {
-                        AmiiboSeries.Add(amiibo["amiiboSeries"].ToString());
+                        amiibo.ID = Convert.ToString(UInt64.Parse(amiibo.head + amiibo.tail, System.Globalization.NumberStyles.HexNumber));
+                        if(!AmiiboSeries.Any(series => series.amiiboSeries == amiibo.amiiboSeries))
+                        {
+                            AmiiboSeries.Add(new AmiiboSeries
+                            {
+                                amiiboSeries = amiibo.amiiboSeries,
+                                Amiibos = new List<Amiibo>()
+                            });
+                        }
+                        AmiiboSeries.Find(series => series.amiiboSeries == amiibo.amiiboSeries).Amiibos.Add(amiibo);
+                    }
+                    AmiiboSeries.Sort();
+                    foreach(AmiiboSeries series in AmiiboSeries)
+                    {
+                        series.Amiibos.Sort();
                     }
 
-                    AllAmiibo.Add(new Amiibo { AmiiboName    = amiibo["name"].ToString(),
-                                               SeriesName    = amiibo["amiiboSeries"].ToString(),
-                                               CharacterName = amiibo["character"].ToString(),
-                                               ImageURL      = amiibo["image"].ToString(),
-                                               AmiiboId      = amiibo["head"].ToString()
-                                                             + amiibo["tail"].ToString()
-                    });
+                    return true;
                 }
-                AmiiboSeries.Sort();
-                AllAmiibo.Sort();
-
-                return true;
             }
-            catch
+            //catch
             {
                 return false;
             }
@@ -61,8 +97,8 @@ namespace emutool
 
         public static char MakeRandomHexChar(Random random)
         {
-            string hexChars    = "0123456789ABCDEF";
-            int    randomIndex = random.Next(0, hexChars.Length - 1);
+            string hexChars = "0123456789ABCDEF";
+            int randomIndex = random.Next(0, hexChars.Length - 1);
 
             return hexChars[randomIndex];
         }
@@ -70,7 +106,7 @@ namespace emutool
         public static string MakeRandomHexString(int length)
         {
             string hexString = "";
-            Random random    = new Random();
+            Random random = new Random();
 
             for (int i = 0; i < length; i++)
             {

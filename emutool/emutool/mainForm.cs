@@ -18,7 +18,7 @@ namespace emutool
 
                 if (AmiiboAPI.AmiiboSeries.Any())
                 {
-                    foreach (string amiiboSerie in AmiiboAPI.AmiiboSeries)
+                    foreach (AmiiboSeries amiiboSerie in AmiiboAPI.AmiiboSeries)
                     {
                         comboBox1.Items.Add(amiiboSerie);
                     }
@@ -41,14 +41,11 @@ namespace emutool
         {
             comboBox2.Items.Clear();
 
-            if (AmiiboAPI.AllAmiibo.Any())
+            if (AmiiboAPI.AmiiboSeries.Any())
             {
-                foreach (Amiibo amiibo in AmiiboAPI.AllAmiibo)
+                foreach (Amiibo amiibo in AmiiboAPI.AmiiboSeries[comboBox1.SelectedIndex].Amiibos)
                 {
-                    if (amiibo.SeriesName == comboBox1.Text)
-                    {
-                        comboBox2.Items.Add(amiibo.AmiiboName);
-                    }
+                        comboBox2.Items.Add(amiibo.name);
                 }
 
                 comboBox2.SelectedIndex = 0;
@@ -57,8 +54,8 @@ namespace emutool
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            pictureBox1.ImageLocation = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().ImageURL;
-            textBox1.Text = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().AmiiboName;
+            pictureBox1.ImageLocation = AmiiboAPI.AmiiboSeries[comboBox1.SelectedIndex].Amiibos[comboBox2.SelectedIndex].image;
+            textBox1.Text = AmiiboAPI.AmiiboSeries[comboBox1.SelectedIndex].Amiibos[comboBox2.SelectedIndex].name;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -137,8 +134,8 @@ namespace emutool
 
                     JObject model = new JObject()
                     {
-                        ["amiiboId"] = AmiiboAPI.AllAmiibo.Where(amiibo => amiibo.SeriesName == comboBox1.Text && amiibo.AmiiboName == comboBox2.Text).SingleOrDefault().AmiiboId
-                    };
+                        ["amiiboId"] = AmiiboAPI.AmiiboSeries[comboBox1.SelectedIndex].Amiibos[comboBox2.SelectedIndex].ID
+                };
 
                     File.WriteAllText(Path.Combine(amiiboDir, "model.json"), model.ToString());
 
