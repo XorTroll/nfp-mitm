@@ -16,6 +16,8 @@
 
 Download the latest release and place it on your CFW's `titles` folder (so it would be like `<cfw>/titles/0100000000000352`).
 
+**Note: On Atmosphere 0.10.0 and above, `titles` has been renamed to `contents`.** (replace `titles` in the path with `contents`)
+
 According to tests, should work on any CFW which allows NSP sysmodules (Atmosphere, ReiNX).
 
 You also have to set the boot2 flag in the CFW's `/titles` directory: `<cfw>/titles/0100000000000352/flags/boot2.flag`.
