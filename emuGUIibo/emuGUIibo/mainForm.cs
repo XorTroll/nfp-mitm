@@ -65,9 +65,14 @@ namespace emuGUIibo
         {
             if (string.IsNullOrEmpty(materialSingleLineTextField1.Text))
             {
-                MessageBox.Show("No amiibo name was specified.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                return;
+                if (MessageBox.Show("No amiibo name was specified, if you press ok amiibo will use default name.", Text, MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.OK)
+                    materialSingleLineTextField1.Text = AmiiboAPI.AmiiboSeries[comboBox1.SelectedIndex].Amiibos[comboBox2.SelectedIndex].name;
+                else
+                {
+                    CodeAction = true;
+                    materialTabControl1.SelectedIndex--;
+                    return;
+                }
             }
 
             string emuiiboDir = "";
@@ -169,6 +174,33 @@ namespace emuGUIibo
                     MessageBox.Show("An error ocurred attempting to create the virtual amiibo.", Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private bool CodeAction = false;
+        private void materialTabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (!CodeAction)
+            {
+                e.Cancel = true;
+                CodeAction = false;
+            }
+                
+        }
+
+        private void NextPage(object sender, EventArgs e)
+        {
+            CodeAction = true;
+            materialTabControl1.SelectedIndex++;
+        }
+        private void PreviousPage(object sender, EventArgs e)
+        {
+            CodeAction = true;
+            materialTabControl1.SelectedIndex--;
+        }
+        private void FirstPage(object sender, EventArgs e)
+        {
+            CodeAction = true;
+            materialTabControl1.SelectedIndex = 0;
         }
     }
 }
