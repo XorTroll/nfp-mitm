@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "emuGUIibo", "emuGUIibo\emuGUIibo.csproj", "{3855C170-795C-412D-88F6-D73005BC7379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3855C170-795C-412D-88F6-D73005BC7379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3855C170-795C-412D-88F6-D73005BC7379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3855C170-795C-412D-88F6-D73005BC7379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3855C170-795C-412D-88F6-D73005BC7379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09648D37-BECD-4CF1-8EF0-FF0E7DFC4715}
+	EndGlobalSection
+EndGlobal
