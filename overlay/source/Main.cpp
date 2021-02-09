@@ -446,6 +446,13 @@ class GuiListElement: public tslext::elm::SmallListItem {
             return false;
         }
 
+        bool containsAmiiboPath() const {
+            if(!emuiibo->isActiveAmiiboValid()) {
+                return false;
+            }
+            return emuiibo->getActiveVirtualAmiiboPath().find(getPath().string()) == 0;
+        }
+
         virtual void update() {
         }
 };
@@ -488,6 +495,35 @@ class AmiiboListElement: public GuiListElement {
             const std::string value = actionGlyph(Action::ActivateItem);
             setValue(isFavorite() ? iconGlyph(Icon::Favorite) + " " + value : value);
         }
+};
+
+class CustomList: public tsl::elm::List {
+    private:
+        tsl::elm::Element* custom_initial_focus{nullptr};
+
+    public:
+        void setCustomInitialFocus(tsl::elm::Element* item) {
+            custom_initial_focus = item;
+        }
+
+        Element* requestFocus(Element *oldFocus, FocusDirection direction) override {
+            auto new_focus = tsl::elm::List::requestFocus(oldFocus, direction);
+            if (!new_focus) {
+                return nullptr;
+            }
+            if (direction == FocusDirection::None) {
+                auto index = getIndexInList(custom_initial_focus);
+                if (index >= 0) {
+                    new_focus = custom_initial_focus->requestFocus(oldFocus, FocusDirection::None);
+                    if (new_focus) {
+                        setFocusedIndex(index);
+                    }
+                }
+                custom_initial_focus = nullptr;
+            }
+            return new_focus;
+        }
+
 };
 
 class AmiiboIcons: public tsl::elm::Element {
@@ -587,7 +623,7 @@ class AmiiboGui : public tsl::Gui {
         tslext::elm::SmallListItem *amiibo_header{nullptr};
         AmiiboIcons* amiibo_icons;
         tsl::elm::List *top_list{nullptr};
-        tsl::elm::List *bottom_list{nullptr};
+        CustomList *bottom_list{nullptr};
 
     public:
         AmiiboGui(std::shared_ptr<EmuiiboState> state, const Type type, const std::filesystem::path &path) : emuiibo{state}, gui_type{type}, base_path(path) {}
@@ -599,7 +635,7 @@ class AmiiboGui : public tsl::Gui {
             // Top and bottom containers
             top_list = new tsl::elm::List();
             root_frame->setTopSection(top_list);
-            bottom_list = new tsl::elm::List();
+            bottom_list = new CustomList();
             root_frame->setBottomSection(bottom_list);
 
             if(!emuiibo->isEmuiiboOk()) {
@@ -639,13 +675,15 @@ class AmiiboGui : public tsl::Gui {
                     });
                 }
                 for (const auto dir_path: dir_paths) {
-                    if (tsl::elm::Element* item = createAmiiboElement(dir_path)) {
-                        bottom_list->addItem(item);
+                    GuiListElement* newItem = createAmiiboElement(dir_path);
+                    if (newItem) {
                         amiibo_count++;
-                        continue;
+                    } else {
+                        newItem = createFolderElement(dir_path);
                     }
-                    if (tsl::elm::Element* item = createFolderElement(dir_path)) {
-                        bottom_list->addItem(item);
+                    bottom_list->addItem(newItem);
+                    if (newItem->containsAmiiboPath()) {
+                        bottom_list->setCustomInitialFocus(newItem);
                     }
                 }
             }
@@ -746,15 +784,28 @@ class AmiiboGui : public tsl::Gui {
         }
 
     private:
-        tsl::elm::Element* createRootElement() {
+        VirtualListElement* createRootElement() {
             auto item = new VirtualListElement(emuiibo, "View amiibos");
             item->setActionListener([this] (auto&) {
                 tsl::changeTo<AmiiboGui>(emuiibo, Type::Folder, emuiibo->getEmuiiboVirtualAmiiboPath());
+                // when root selected first time and active amiibo exists we open directly folder of active amiibo
+                static bool is_first_time = true;
+                if(is_first_time && emuiibo->isActiveAmiiboValid()) {
+                    const auto rel_path = std::filesystem::path{emuiibo->getActiveVirtualAmiiboPath()}
+                                         .lexically_relative(emuiibo->getEmuiiboVirtualAmiiboPath())
+                                         .parent_path();
+                    auto incremental_path = emuiibo->getEmuiiboVirtualAmiiboPath();
+                    for (const auto folder: rel_path) {
+                        incremental_path = incremental_path / folder;
+                        tsl::changeTo<AmiiboGui>(emuiibo, Type::Folder, incremental_path);
+                    }
+                }
+                is_first_time = false;
             });
             return item;
         }
 
-        tsl::elm::Element* createFavoritesElement() {
+        VirtualListElement* createFavoritesElement() {
             auto item = new VirtualListElement(emuiibo, "Favorites " + iconGlyph(Icon::Favorite));
             item->setActionListener([this](auto&) {
                 tsl::changeTo<AmiiboGui>(emuiibo, Type::Favorites, "<favorites>");
@@ -762,7 +813,7 @@ class AmiiboGui : public tsl::Gui {
             return item;
         }
 
-        tsl::elm::Element* createResetElement() {
+        ActionListElement* createResetElement() {
             auto item = new ActionListElement(emuiibo, "Reset active " + iconGlyph(Icon::Reset));
             item->setActionListener([this](auto&) {
                 emuiibo->ResetActiveVirtualAmiibo();
@@ -771,7 +822,7 @@ class AmiiboGui : public tsl::Gui {
             return item;
         }
 
-        tsl::elm::Element* createHelpElement() {
+        ActionListElement* createHelpElement() {
             auto item = new ActionListElement(emuiibo, "Help " + iconGlyph(Icon::Help));
             item->setActionListener([this](auto&) {
                 tsl::changeTo<AmiiboGuiHelp>(emuiibo);;
@@ -779,7 +830,7 @@ class AmiiboGui : public tsl::Gui {
             return item;
         }
 
-        tsl::elm::Element* createFolderElement(const std::filesystem::path& path) {
+        FolderListElement* createFolderElement(const std::filesystem::path& path) {
             auto item = new FolderListElement(emuiibo, path);
             item->setActionListener([this](auto& caller) {
                 tsl::changeTo<AmiiboGui>(emuiibo, Type::Folder, caller.getPath());
@@ -787,7 +838,7 @@ class AmiiboGui : public tsl::Gui {
             return item;
         }
 
-        tsl::elm::Element* createAmiiboElement(const std::filesystem::path& path) {
+        AmiiboListElement* createAmiiboElement(const std::filesystem::path& path) {
             emu::VirtualAmiiboData data = {};
             if(!emuiibo->getVirtualAmiiboAmiiboData(path, data)) {
                 return nullptr;
