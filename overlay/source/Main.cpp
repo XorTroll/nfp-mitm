@@ -8,6 +8,7 @@
 #include <fstream>
 #include <set>
 #include <upng.h>
+#include <translation.h>
 
 namespace {
     enum Action : u64 {
@@ -59,6 +60,7 @@ namespace {
     std::string favoritesFile() {
         return "favorites.txt";
     }
+
 }
 
 class PngImage {
@@ -85,7 +87,7 @@ class PngImage {
             tsl::hlp::doWithSDCardHandle([this, max_height, max_width] {
                 upng_t* upng = upng_new_from_file(path.c_str());
                 if (upng == NULL) {
-                    setError("Bad file");
+                    setError(TR_CTX("Bad file", "UPNG"));
                     return;
                 }
                 upng_decode(upng);
@@ -96,7 +98,7 @@ class PngImage {
                         *  DELETE ONCE RGB DOWNSCALE WORKS PROPERLY
                         */
                         if (is_rgb){
-                            setError("Please use RGBA PNG.");
+                            setError(TR_CTX("Please use RGBA PNG.", "UPNG"));
                             break;
                         }
                         /* DELETE END */
@@ -110,7 +112,7 @@ class PngImage {
                         double scale2 = (double)max_width / (double)upng_width;
                         double scale = std::min(scale1, scale2);
                         if (scale > 1.0) {
-                            setError("Upscale not allowed.");
+                            setError(TR_CTX("Upscale not allowed.", "UPNG"));
                             break;
                         }
 
@@ -143,35 +145,35 @@ class PngImage {
                         break;
                     }
                     case UPNG_ENOMEM: {
-                        setError("Image is too big.");
+                        setError(TR_CTX("Image is too big.", "UPNG"));
                         break;
                     }
                     case UPNG_ENOTFOUND: {
-                        setError("Image not found.");
+                        setError(TR_CTX("Image not found.", "UPNG"));
                         break;
                     }
                     case UPNG_ENOTPNG: {
-                        setError("Image is not a PNG.");
+                        setError(TR_CTX("Image is not a PNG.", "UPNG"));
                         break;
                     }
                     case UPNG_EMALFORMED: {
-                        setError("PNG malformed.");
+                        setError(TR_CTX("PNG malformed.", "UPNG"));
                         break;
                     }
                     case UPNG_EUNSUPPORTED: {
-                        setError("This PNG not supported.");
+                        setError(TR_CTX("This PNG not supported.", "UPNG"));
                         break;
                     }
                     case UPNG_EUNINTERLACED: {
-                        setError("Image interlacing is not supported.");
+                        setError(TR_CTX("Image interlacing is not supported.", "UPNG"));
                         break;
                     }
                     case UPNG_EUNFORMAT: {
-                        setError("Image color format is not supported.");
+                        setError(TR_CTX("Image color format is not supported.", "UPNG"));
                         break;
                     }
                     case UPNG_EPARAM: {
-                        setError("Invalid parameter.");
+                        setError(TR_CTX("Invalid parameter.", "UPNG"));
                         break;
                     }
                 }
@@ -254,7 +256,7 @@ class EmuiiboState {
 
         std::string getEmuiiboVersionString() const {
             if (!isEmuiiboOk()) {
-                return "emuiibo not found...";
+                return TR("emuiibo not found...");
             }
             const auto& emuiibo_version = getEmuiiboVersion();
             return std::to_string(emuiibo_version.major) + "." + std::to_string(emuiibo_version.minor) + "." + std::to_string(emuiibo_version.micro) + " (" + (emuiibo_version.dev_build ? "dev" : "release") + ")";
@@ -459,12 +461,12 @@ class GuiListElement: public tslext::elm::SmallListItem {
 
 class VirtualListElement: public GuiListElement {
     public:
-        VirtualListElement(std::shared_ptr<EmuiiboState> state, const std::string& label) : GuiListElement(state, {}, label, "..") {}
+        VirtualListElement(std::shared_ptr<EmuiiboState> state, const std::string& label, const std::string& iconGlyph = "") : GuiListElement(state, {}, label + (!iconGlyph.empty() ? " " + iconGlyph : ""), "..") {}
 };
 
 class ActionListElement: public GuiListElement {
     public:
-        ActionListElement(std::shared_ptr<EmuiiboState> state, const std::string& label) : GuiListElement(state, {}, label, "") {}
+        ActionListElement(std::shared_ptr<EmuiiboState> state, const std::string& label, const std::string& iconGlyph = "") : GuiListElement(state, {}, label + (!iconGlyph.empty() ? " " + iconGlyph : ""), "") {}
 };
 
 class FolderListElement: public GuiListElement {
@@ -587,18 +589,18 @@ class AmiiboGuiHelp : public tsl::Gui {
         AmiiboGuiHelp(std::shared_ptr<EmuiiboState> state) : emuiibo{state} {}
 
         virtual tsl::elm::Element* createUI() override {
-            auto root_frame = new tslext::elm::DoubleSectionOverlayFrame("emuiibo help", emuiibo->getEmuiiboVersionString(), tslext::SectionsLayout::big_top, false);
+            auto root_frame = new tslext::elm::DoubleSectionOverlayFrame(TR("Help"), emuiibo->getEmuiiboVersionString(), tslext::SectionsLayout::big_top, false);
             auto top_list = new tsl::elm::List();
             root_frame->setTopSection(top_list);
 
-            top_list->addItem(new tslext::elm::SmallListItem("Help", actionGlyph(Action::ShowHelp)));
-            top_list->addItem(new tslext::elm::SmallListItem("Enable emulation", actionGlyph(Action::EnableEmulation)));
-            top_list->addItem(new tslext::elm::SmallListItem("Disable emulation", actionGlyph(Action::DisableEmulation)));
-            top_list->addItem(new tslext::elm::SmallListItem("Connect/disconnect virtual amiibo", actionGlyph(Action::ToogleConnectAmiibo)));
-            top_list->addItem(new tslext::elm::SmallListItem("Select folder/virtual amiibo", actionGlyph(Action::ActivateItem)));
-            top_list->addItem(new tslext::elm::SmallListItem("Add to favorites", actionGlyph(Action::AddToFavorite)));
-            top_list->addItem(new tslext::elm::SmallListItem("Remove from favorites", actionGlyph(Action::RemoveFromFavorite)));
-            top_list->addItem(new tslext::elm::SmallListItem("Reset active amiibo", actionGlyph(Action::ResetActiveAmiibo)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Help"), actionGlyph(Action::ShowHelp)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Enable emulation"), actionGlyph(Action::EnableEmulation)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Disable emulation"), actionGlyph(Action::DisableEmulation)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Connect/disconnect virtual amiibo"), actionGlyph(Action::ToogleConnectAmiibo)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Select folder/virtual amiibo"), actionGlyph(Action::ActivateItem)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Add to favorites"), actionGlyph(Action::AddToFavorite)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Remove from favorites"), actionGlyph(Action::RemoveFromFavorite)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Reset active amiibo"), actionGlyph(Action::ResetActiveAmiibo)));
 
             return root_frame;
         }
@@ -689,7 +691,8 @@ class AmiiboGui : public tsl::Gui {
             }
 
             // emuiibo emulation status
-            toggle_item = new tslext::elm::SmallToggleListItem("Emulation status " + actionGlyph(Action::DisableEmulation) + " " + actionGlyph(Action::EnableEmulation), false, "on", "off");
+            toggle_item = new tslext::elm::SmallToggleListItem(TR("Emulation status") + " " + actionGlyph(Action::DisableEmulation) + " " + actionGlyph(Action::EnableEmulation),
+                                                               false, TR("on"), TR("off"));
             toggle_item->setClickListener([&](u64 keys) {
                 if(keys & Action::ActivateItem){
                     emuiibo->toggleEmulationStatus();
@@ -700,7 +703,7 @@ class AmiiboGui : public tsl::Gui {
             top_list->addItem(toggle_item);
 
             // Current game status
-            game_header = new tslext::elm::SmallListItem("Current game is");
+            game_header = new tslext::elm::SmallListItem(TR("Current game is"));
             top_list->addItem(game_header);
 
             // Current amiibo
@@ -712,7 +715,7 @@ class AmiiboGui : public tsl::Gui {
             top_list->addItem(amiibo_icons, maxIconHeigth() + 2 * marginIcon());
 
             // Information about base folder
-            top_list->addItem(new tslext::elm::SmallListItem(std::string("Available amiibos in '") + base_path.filename().string() + "'", std::to_string(amiibo_count)));
+            top_list->addItem(new tslext::elm::SmallListItem(TR("Available amiibos in") + " '" + base_path.filename().string() + "': " + std::to_string(amiibo_count)));
 
             // Main key bindings
             root_frame->setClickListener([&](u64 keys) {
@@ -759,16 +762,16 @@ class AmiiboGui : public tsl::Gui {
                 return;
             }
 
-            game_header->setColoredValue(emuiibo->isCurrentApplicationIdIntercepted() ? "intercepted" : "not intercepted",
+            game_header->setColoredValue(emuiibo->isCurrentApplicationIdIntercepted() ? TR("intercepted") : TR("not intercepted"),
                                          emuiibo->isCurrentApplicationIdIntercepted() ? tsl::style::color::ColorHighlight : tslext::style::color::ColorWarning);
 
             if(emuiibo->isActiveAmiiboValid()) {
                 amiibo_header->setText(std::string(emuiibo->getActiveVirtualAmiiboAmiiboData().name) + " " + actionGlyph(Action::ToogleConnectAmiibo));
             }
             else {
-                amiibo_header->setText("No active virtual amiibo");
+                amiibo_header->setText(TR("No active virtual amiibo"));
             }
-            amiibo_header->setColoredValue(emuiibo->getActiveVirtualAmiiboStatus() == emu::VirtualAmiiboStatus::Connected ? "connected" : "disconnected",
+            amiibo_header->setColoredValue(emuiibo->getActiveVirtualAmiiboStatus() == emu::VirtualAmiiboStatus::Connected ? TR("connected") : TR("disconnected"),
                                            emuiibo->getActiveVirtualAmiiboStatus() == emu::VirtualAmiiboStatus::Connected ? tsl::style::color::ColorHighlight : tslext::style::color::ColorWarning);
 
             if (auto* amiibo_item = dynamic_cast<AmiiboListElement*>(getFocusedElement())) {
@@ -785,7 +788,7 @@ class AmiiboGui : public tsl::Gui {
 
     private:
         VirtualListElement* createRootElement() {
-            auto item = new VirtualListElement(emuiibo, "View amiibos");
+            auto item = new VirtualListElement(emuiibo, TR("View amiibos"));
             item->setActionListener([this] (auto&) {
                 tsl::changeTo<AmiiboGui>(emuiibo, Type::Folder, emuiibo->getEmuiiboVirtualAmiiboPath());
                 // when root selected first time and active amiibo exists we open directly folder of active amiibo
@@ -806,7 +809,7 @@ class AmiiboGui : public tsl::Gui {
         }
 
         VirtualListElement* createFavoritesElement() {
-            auto item = new VirtualListElement(emuiibo, "Favorites " + iconGlyph(Icon::Favorite));
+            auto item = new VirtualListElement(emuiibo, TR("Favorites"), iconGlyph(Icon::Favorite));
             item->setActionListener([this](auto&) {
                 tsl::changeTo<AmiiboGui>(emuiibo, Type::Favorites, "<favorites>");
             });
@@ -814,7 +817,7 @@ class AmiiboGui : public tsl::Gui {
         }
 
         ActionListElement* createResetElement() {
-            auto item = new ActionListElement(emuiibo, "Reset active " + iconGlyph(Icon::Reset));
+            auto item = new ActionListElement(emuiibo, TR("Reset active"), iconGlyph(Icon::Reset));
             item->setActionListener([this](auto&) {
                 emuiibo->ResetActiveVirtualAmiibo();
                 update();
@@ -823,7 +826,7 @@ class AmiiboGui : public tsl::Gui {
         }
 
         ActionListElement* createHelpElement() {
-            auto item = new ActionListElement(emuiibo, "Help " + iconGlyph(Icon::Help));
+            auto item = new ActionListElement(emuiibo, TR("Help"), iconGlyph(Icon::Help));
             item->setActionListener([this](auto&) {
                 tsl::changeTo<AmiiboGuiHelp>(emuiibo);;
             });
@@ -866,6 +869,7 @@ class EmuiiboOverlay : public tsl::Overlay {
         }
 
         virtual void initServices() override {
+            Translator::global().loadSystem();
             emuiibo->initEmuiibo();
         }
 
