@@ -32,7 +32,7 @@ namespace emutool
         public MainForm()
         {
             InitializeComponent();
-            DialogCaption = "emutool v" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            DialogCaption = "emutool v" + Assembly.GetExecutingAssembly().GetName().Version;
             Text = DialogCaption + " - emuiibo's tool for virtual amiibo creation";
             Amiibos = AmiiboAPI.GetAllAmiibos();
 
@@ -47,7 +47,6 @@ namespace emutool
                     {
                         SeriesComboBox.Items.Add(series);
                     }
-                    SeriesComboBox.SelectedIndex = 0;
                 }
             }
             else
@@ -60,7 +59,7 @@ namespace emutool
             }
         }
 
-        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SeriesComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             AmiiboComboBox.Items.Clear();
 
@@ -79,7 +78,7 @@ namespace emutool
             }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void AmiiboComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
