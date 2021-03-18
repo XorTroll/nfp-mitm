@@ -351,6 +351,8 @@
 			// 
 			// AmiiboComboBox
 			// 
+			this.AmiiboComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+			this.AmiiboComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.AmiiboComboBox.FormattingEnabled = true;
 			this.AmiiboComboBox.Location = new System.Drawing.Point(202, 29);
 			this.AmiiboComboBox.Name = "AmiiboComboBox";
