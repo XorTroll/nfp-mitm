@@ -3,6 +3,7 @@
 #include <emuiibo.hpp>
 #include <libtesla_ext.hpp>
 #include <dirent.h>
+#include <translation.h>
 
 namespace {
 
@@ -36,9 +37,9 @@ namespace {
 
     inline std::string MakeActiveAmiiboText() {
         if(IsActiveAmiiboValid()) {
-            return std::string("Active virtual amiibo: ") + g_ActiveVirtualAmiiboData.name;
+            return TR("Active virtual amiibo: ") + g_ActiveVirtualAmiiboData.name;
         }
-        return "No active virtual amiibo";
+        return TR("No active virtual amiibo");
     }
 
     inline std::string MakeTitleText() {
@@ -50,43 +51,43 @@ namespace {
 
     inline std::string MakeStatusText() {
         if(!g_Initialized) {
-            return "emuiibo was not accessed.";
+            return TR("emuiibo was not accessed.");
         }
-        std::string msg = "Emulation: ";
+        std::string msg = TR("Emulation: ");
         auto e_status = emu::GetEmulationStatus();
         switch(e_status) {
             case emu::EmulationStatus::On: {
-                msg += "on\n";
+                msg += TR("on") + "\n";
                 auto v_status = emu::GetActiveVirtualAmiiboStatus();
                 switch(v_status) {
                     case emu::VirtualAmiiboStatus::Invalid: {
-                        msg += "No active virtual amiibo.";
+                        msg += TR("No active virtual amiibo.");
                         break;
                     }
                     case emu::VirtualAmiiboStatus::Connected: {
-                        msg += "Virtual amiibo: ";
+                        msg += TR("Virtual amiibo: ");
                         msg += g_ActiveVirtualAmiiboData.name;
-                        msg += " (connected - select to disconnect)";
+                        msg += TR(" (connected - select to disconnect)");
                         break;
                     }
                     case emu::VirtualAmiiboStatus::Disconnected: {
-                        msg += "Virtual amiibo: ";
+                        msg += TR("Virtual amiibo: ");
                         msg += g_ActiveVirtualAmiiboData.name;
-                        msg += " (disconnected - select to connect)";
+                        msg += TR(" (disconnected - select to connect)");
                         break;
                     }
                 }
                 msg += "\n";
                 if(g_CurrentApplicationIntercepted) {
-                    msg += "Current game is being intercepted by emuiibo.";
+                    msg += TR("Current game is being intercepted by emuiibo.");
                 }
                 else {
-                    msg += "Current game is not being intercepted.";
+                    msg += TR("Current game is not being intercepted.");
                 }
                 break;
             }
             case emu::EmulationStatus::Off: {
-                msg += "off";
+                msg += TR("off");
                 break;
             }
         }
@@ -138,7 +139,7 @@ class AmiiboList : public tsl::Gui {
                 UpdateActiveAmiibo();
                 selected_header->setText(MakeActiveAmiiboText());
                 root_frame->setSubtitle(MakeStatusText());
-                return true;   
+                return true;
             }
             return false;
         }
@@ -173,7 +174,7 @@ class AmiiboList : public tsl::Gui {
             });
 
             selected_header = new tsl::elm::BigCategoryHeader(MakeActiveAmiiboText(), true);
-            count_header = new tsl::elm::CategoryHeader("Available virtual amiibos (" + std::to_string(count) + ")", true);
+            count_header = new tsl::elm::CategoryHeader(TR("Available virtual amiibos")+ " (" + std::to_string(count) + ")", true);
 
             header_list->addItem(selected_header);
             header_list->addItem(count_header);
@@ -254,7 +255,7 @@ class CategoryList : public tsl::Gui {
                 }
             });
 
-            this->count_header = new tsl::elm::CategoryHeader("Available categories (" + std::to_string(count) + ")", true);
+            this->count_header = new tsl::elm::CategoryHeader(TR("Available categories") + " (" + std::to_string(count) + ")", true);
 
             header_list->addItem(this->selected_header);
             header_list->addItem(this->count_header);
@@ -296,12 +297,12 @@ class MainGui : public tsl::Gui {
 
         virtual tsl::elm::Element *createUI() override {
             auto list = new tsl::elm::List();
-            
+
             if(g_Initialized) {
                 auto status = emu::GetEmulationStatus();
 
-                auto *toggle_item = new tsl::elm::NamedStepTrackBar("\u22EF", { "Off", "On" });
-                auto *select_item = new tsl::elm::SmallListItem("View amiibo");
+                auto *toggle_item = new tsl::elm::NamedStepTrackBar("\u22EF", { TR("Off"), TR("On") });
+                auto *select_item = new tsl::elm::SmallListItem(TR("View amiibo"));
 
                 u8 toggle_progress;
                 switch(status) {
@@ -327,8 +328,8 @@ class MainGui : public tsl::Gui {
                     }
                     this->Refresh();
                 });
-                
-                select_item->setClickListener([](u64 keys) { 
+
+                select_item->setClickListener([](u64 keys) {
                     if(keys & KEY_A) {
                         tsl::changeTo<CategoryList>();
                         g_NeedsUpdateMainGui = true;
@@ -337,7 +338,7 @@ class MainGui : public tsl::Gui {
                     return false;
                 });
 
-                list->addItem(new tsl::elm::BigCategoryHeader("Manage emulation (on / off)", true));
+                list->addItem(new tsl::elm::BigCategoryHeader(TR("Manage emulation (on / off)"), true));
                 list->addItem(toggle_item);
                 list->addItem(this->amiibo_header);
                 list->addItem(select_item);
@@ -382,14 +383,15 @@ class Overlay : public tsl::Overlay {
             if(g_Initialized) {
                 UpdateActiveAmiibo();
             }
+            Translator::global().loadSystem();
         }
-        
+
         virtual void exitServices() override {
             pminfoExit();
             pmdmntExit();
             emu::Exit();
         }
-        
+
         virtual std::unique_ptr<tsl::Gui> loadInitialGui() override {
             return initially<MainGui>();
         }
