@@ -127,7 +127,7 @@ An access ID is a unique ID/number each game has for amiibo savedata, used to ch
 
 - **LoOkYe** for writing emuiibo's wiki and helping with support.
 
-- **AD2076** for helping with the tesla overlay.
+- **AD2076** and **AmonRaNet** for helping with the tesla overlay.
 
 - **Thog** / **Ryujinx** devs for reversing mii services and various of its types.
 
