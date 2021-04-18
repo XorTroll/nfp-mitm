@@ -1,175 +1,175 @@
 {
     "metadata": {
         "base": "en",
-        "language": "de",
-        "created": "2021-4-9",
-        "author": "AmonRaNet"
+        "language": "es",
+        "created": "2021-4-18",
+        "author": "Impeeza"
     },
     "strings": [
         {
             "context": "UPNG",
             "source": "Bad file",
-            "translation": "Ungültige Datei"
+            "translation": "Archivo Inválido"
         },
         {
             "context": "UPNG",
             "source": "Please use RGBA PNG.",
-            "translation": "Bitte verwenden Sie RGBA PNG."
+            "translation": "Por favor utilizar un archivo PNG en formato RGBA."
         },
         {
             "context": "UPNG",
             "source": "Upscale not allowed.",
-            "translation": "Upscale nicht erlaubt."
+            "translation": "No se permite escalar la Imagen."
         },
         {
             "context": "UPNG",
             "source": "Image is too big.",
-            "translation": "Bild ist zu groß."
+            "translation": "Imagen muy grande."
         },
         {
             "context": "UPNG",
             "source": "Image not found.",
-            "translation": "Bild nicht gefunden."
+            "translation": "Imagen no econtrada."
         },
         {
             "context": "UPNG",
             "source": "Image is not a PNG.",
-            "translation": "Bild ist kein PNG."
+            "translation": "Imagen no es un archivo PNG."
         },
         {
             "context": "UPNG",
             "source": "PNG malformed.",
-            "translation": "PNG fehlerhaft."
+            "translation": "Archivo con formato PNG erróneo."
         },
         {
             "context": "UPNG",
             "source": "This PNG not supported.",
-            "translation": "Dieses PNG wird nicht unterstützt."
+            "translation": "No se soporta éste archivo PNG."
         },
         {
             "context": "UPNG",
             "source": "Image interlacing is not supported.",
-            "translation": "Bild Interlacing wird nicht unterstützt."
+            "translation": "No se soportan imagénes interlaceadas."
         },
         {
             "context": "UPNG",
             "source": "Image color format is not supported.",
-            "translation": "Das Bildfarbformat wird nicht unterstützt."
+            "translation": "Formato de color de la imagen no es soportado."
         },
         {
             "context": "UPNG",
             "source": "Invalid parameter.",
-            "translation": "Ungültiger Parameter."
+            "translation": "Parámetro incorrecto."
         },
         {
             "context": "",
             "source": "emuiibo not found...",
-            "translation": "emuiibo nicht gefunden ..."
+            "translation": "Emuiibo no econtrado ..."
         },
         {
             "context": "",
             "source": "Help",
-            "translation": "Hilfe"
+            "translation": "Ayuda"
         },
         {
             "context": "",
             "source": "Enable emulation",
-            "translation": "Emulation aktivieren"
+            "translation": "Habilitar emulación"
         },
         {
             "context": "",
             "source": "Disable emulation",
-            "translation": "Emulation deaktivieren"
+            "translation": "Desactivar emulación"
         },
         {
             "context": "",
             "source": "Connect/disconnect virtual amiibo",
-            "translation": "Virtuelles Amiibo verbinden/trennen"
+            "translation": "Conectar/Desconectar amiibo virtual"
         },
         {
             "context": "",
             "source": "Select folder/virtual amiibo",
-            "translation": "Ordner/virtuelles Amiibo auswählen"
+            "translation": "Selecionar carpeta/amiibo virtual"
         },
         {
             "context": "",
             "source": "Add to favorites",
-            "translation": "Zu Favoriten hinzufügen"
+            "translation": "Adicionar a favoritos"
         },
         {
             "context": "",
             "source": "Remove from favorites",
-            "translation": "Aus Favoriten entfernen"
+            "translation": "Remover de favoritos"
         },
         {
             "context": "",
             "source": "Reset active amiibo",
-            "translation": "Aktives Amiibo zurücksetzen"
+            "translation": "Restablecer amiibo activo"
         },
         {
             "context": "",
             "source": "Emulation status",
-            "translation": "Emulationsstatus"
+            "translation": "Estado de la emulacioón"
         },
         {
             "context": "",
             "source": "on",
-            "translation": "an"
+            "translation": "Encendido"
         },
         {
             "context": "",
             "source": "off",
-            "translation": "aus"
+            "translation": "Apagado"
         },
         {
             "context": "",
             "source": "Current game is",
-            "translation": "Aktuelles Spiel ist"
+            "translation": "El juego actual"
         },
         {
             "context": "",
             "source": "Available amiibos in",
-            "translation": "Verfügbare Amiibos in"
+            "translation": "Amiibos disponibles en"
         },
         {
             "context": "",
             "source": "intercepted",
-            "translation": "abgefangen"
+            "translation": "ésta siendo interceptado"
         },
         {
             "context": "",
             "source": "not intercepted",
-            "translation": "nicht abgefangen"
+            "translation": "NO ésta siendo interceptado"
         },
         {
             "context": "",
             "source": "No active virtual amiibo",
-            "translation": "Kein aktives virtuelles Amiibo"
+            "translation": "No hay amiibo virtual activo"
         },
         {
             "context": "",
             "source": "connected",
-            "translation": "verbunden"
+            "translation": "conectado"
         },
         {
             "context": "",
             "source": "disconnected",
-            "translation": "getrennt"
+            "translation": "desconectado"
         },
         {
             "context": "",
             "source": "View amiibos",
-            "translation": "Amiibos anzeigen"
+            "translation": "Ver Amiibos"
         },
         {
             "context": "",
             "source": "Favorites",
-            "translation": "Favoriten"
+            "translation": "Favoritos"
         },
         {
             "context": "",
             "source": "Reset active",
-            "translation": "Aktives zurücksetzen"
+            "translation": "Restablecer activo"
         }
     ]
 }
