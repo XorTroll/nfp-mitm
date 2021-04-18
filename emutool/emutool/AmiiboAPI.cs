@@ -40,7 +40,7 @@ namespace emutool
                 var list = new List<Amiibo>();
                 if(Amiibos.Any())
                 {
-                    list.AddRange(Amiibos.Where(amiibo => amiibo.SeriesName == series));
+                    list.AddRange(Amiibos.Where(amiibo => amiibo.SeriesName == series).OrderBy(amiibo => amiibo.AmiiboName));
                 }
                 return list;
             }
