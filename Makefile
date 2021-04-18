@@ -24,3 +24,4 @@ clean:
 
 translation:
 	$(CURDIR)/overlay/tools/translation.py update ru $(ARGS)
+	$(CURDIR)/overlay/tools/translation.py update es $(ARGS)
