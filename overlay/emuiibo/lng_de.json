@@ -1,0 +1,175 @@
+{
+    "metadata": {
+        "base": "en",
+        "language": "de",
+        "created": "2021-4-9",
+        "author": "AmonRaNet"
+    },
+    "strings": [
+        {
+            "context": "UPNG",
+            "source": "Bad file",
+            "translation": "Ungültige Datei"
+        },
+        {
+            "context": "UPNG",
+            "source": "Please use RGBA PNG.",
+            "translation": "Bitte verwenden Sie RGBA PNG."
+        },
+        {
+            "context": "UPNG",
+            "source": "Upscale not allowed.",
+            "translation": "Upscale nicht erlaubt."
+        },
+        {
+            "context": "UPNG",
+            "source": "Image is too big.",
+            "translation": "Bild ist zu groß."
+        },
+        {
+            "context": "UPNG",
+            "source": "Image not found.",
+            "translation": "Bild nicht gefunden."
+        },
+        {
+            "context": "UPNG",
+            "source": "Image is not a PNG.",
+            "translation": "Bild ist kein PNG."
+        },
+        {
+            "context": "UPNG",
+            "source": "PNG malformed.",
+            "translation": "PNG fehlerhaft."
+        },
+        {
+            "context": "UPNG",
+            "source": "This PNG not supported.",
+            "translation": "Dieses PNG wird nicht unterstützt."
+        },
+        {
+            "context": "UPNG",
+            "source": "Image interlacing is not supported.",
+            "translation": "Bild Interlacing wird nicht unterstützt."
+        },
+        {
+            "context": "UPNG",
+            "source": "Image color format is not supported.",
+            "translation": "Das Bildfarbformat wird nicht unterstützt."
+        },
+        {
+            "context": "UPNG",
+            "source": "Invalid parameter.",
+            "translation": "Ungültiger Parameter."
+        },
+        {
+            "context": "",
+            "source": "emuiibo not found...",
+            "translation": "emuiibo nicht gefunden ..."
+        },
+        {
+            "context": "",
+            "source": "Help",
+            "translation": "Hilfe"
+        },
+        {
+            "context": "",
+            "source": "Enable emulation",
+            "translation": "Emulation aktivieren"
+        },
+        {
+            "context": "",
+            "source": "Disable emulation",
+            "translation": "Emulation deaktivieren"
+        },
+        {
+            "context": "",
+            "source": "Connect/disconnect virtual amiibo",
+            "translation": "Virtuelles Amiibo verbinden/trennen"
+        },
+        {
+            "context": "",
+            "source": "Select folder/virtual amiibo",
+            "translation": "Ordner/virtuelles Amiibo auswählen"
+        },
+        {
+            "context": "",
+            "source": "Add to favorites",
+            "translation": "Zu Favoriten hinzufügen"
+        },
+        {
+            "context": "",
+            "source": "Remove from favorites",
+            "translation": "Aus Favoriten entfernen"
+        },
+        {
+            "context": "",
+            "source": "Reset active amiibo",
+            "translation": "Aktives Amiibo zurücksetzen"
+        },
+        {
+            "context": "",
+            "source": "Emulation status",
+            "translation": "Emulationsstatus"
+        },
+        {
+            "context": "",
+            "source": "on",
+            "translation": "an"
+        },
+        {
+            "context": "",
+            "source": "off",
+            "translation": "aus"
+        },
+        {
+            "context": "",
+            "source": "Current game is",
+            "translation": "Aktuelles Spiel ist"
+        },
+        {
+            "context": "",
+            "source": "Available amiibos in",
+            "translation": "Verfügbare Amiibos in"
+        },
+        {
+            "context": "",
+            "source": "intercepted",
+            "translation": "abgefangen"
+        },
+        {
+            "context": "",
+            "source": "not intercepted",
+            "translation": "nicht abgefangen"
+        },
+        {
+            "context": "",
+            "source": "No active virtual amiibo",
+            "translation": "Kein aktives virtuelles Amiibo"
+        },
+        {
+            "context": "",
+            "source": "connected",
+            "translation": "verbunden"
+        },
+        {
+            "context": "",
+            "source": "disconnected",
+            "translation": "getrennt"
+        },
+        {
+            "context": "",
+            "source": "View amiibos",
+            "translation": "Amiibos anzeigen"
+        },
+        {
+            "context": "",
+            "source": "Favorites",
+            "translation": "Favoriten"
+        },
+        {
+            "context": "",
+            "source": "Reset active",
+            "translation": "Aktives zurücksetzen"
+        }
+    ]
+}
