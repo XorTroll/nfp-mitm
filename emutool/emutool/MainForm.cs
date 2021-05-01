@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -234,11 +234,16 @@ namespace emutool
         {
             try
             {
-                string base_dir = SelectDirectory();
-                if(base_dir == null)
+                string base_dir = null;
+                if(!FtpSaveCheck.Checked)
                 {
-                    // User cancelled
-                    return;
+                    // If we're saving normally and we're not using the last path, ask the user for the path
+                    base_dir = SelectDirectory();
+                    if(base_dir == null)
+                    {
+                        // User cancelled
+                        return;
+                    }
                 }
 
                 if(!CreateAllCheck.Checked)
@@ -269,7 +274,7 @@ namespace emutool
                 }
                 else
                 {
-                    var actual_base_dir = base_dir;
+                    var actual_base_dir = "";
                     AmiiboSeries = Amiibos.GetAmiiboSeries();
                     if (AmiiboSeries.Any())
                     {
