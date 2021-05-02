@@ -15,8 +15,13 @@ all:
 	@cp $(CURDIR)/emuiibo/toolbox.json $(CURDIR)/SdOut/atmosphere/contents/0100000000000352/toolbox.json
 	@mkdir -p $(CURDIR)/SdOut/switch/.overlays
 	@cp $(CURDIR)/overlay/emuiibo.ovl $(CURDIR)/SdOut/switch/.overlays/emuiibo.ovl
+	@cp -r $(CURDIR)/overlay/emuiibo $(CURDIR)/SdOut/switch/.overlays/
 
 clean:
 	@rm -rf $(CURDIR)/SdOut
 	@cd emuiibo; xargo clean
 	@$(MAKE) clean -C overlay/
+
+translation:
+	$(CURDIR)/overlay/tools/translation.py update ru $(ARGS)
+	$(CURDIR)/overlay/tools/translation.py update es $(ARGS)

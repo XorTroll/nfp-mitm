@@ -1,0 +1,100 @@
+{
+    "metadata": {
+        "base": "en",
+        "language": "ru",
+        "created": "2021-2-11",
+        "author": "AmonRaNet"
+    },
+    "strings": [
+        {
+            "context": "",
+            "source": "Active virtual amiibo: ",
+            "translation": "Активный виртуальный amiibo: "
+        },
+        {
+            "context": "",
+            "source": "No active virtual amiibo",
+            "translation": "Виртуальный amiibo не выбран"
+        },
+        {
+            "context": "",
+            "source": "emuiibo was not accessed.",
+            "translation": "emuiibo не был доступен."
+        },
+        {
+            "context": "",
+            "source": "Emulation: ",
+            "translation": "Эмуляция: "
+        },
+        {
+            "context": "",
+            "source": "on",
+            "translation": "вкл"
+        },
+        {
+            "context": "",
+            "source": "No active virtual amiibo.",
+            "translation": "Виртуальный amiibo не выбран."
+        },
+        {
+            "context": "",
+            "source": "Virtual amiibo: ",
+            "translation": "Виртуальный amiibo: "
+        },
+        {
+            "context": "",
+            "source": " (connected - select to disconnect)",
+            "translation": " (подключено - выберите чтобы отключить)"
+        },
+        {
+            "context": "",
+            "source": " (disconnected - select to connect)",
+            "translation": " (отключено - выберите чтобы включить)"
+        },
+        {
+            "context": "",
+            "source": "Current game is being intercepted by emuiibo.",
+            "translation": "Текущая игра перехватывается emuiibo."
+        },
+        {
+            "context": "",
+            "source": "Current game is not being intercepted.",
+            "translation": "Текущая игра не перехватывается."
+        },
+        {
+            "context": "",
+            "source": "off",
+            "translation": "выкл"
+        },
+        {
+            "context": "",
+            "source": "Available virtual amiibos",
+            "translation": "Доступные виртуальные amiibos"
+        },
+        {
+            "context": "",
+            "source": "Available categories",
+            "translation": "Доступные категории"
+        },
+        {
+            "context": "",
+            "source": "Off",
+            "translation": "Выкл"
+        },
+        {
+            "context": "",
+            "source": "On",
+            "translation": "Вкл"
+        },
+        {
+            "context": "",
+            "source": "View amiibo",
+            "translation": "Просмотр amiibo"
+        },
+        {
+            "context": "",
+            "source": "Manage emulation (on / off)",
+            "translation": "Управление эмуляцией (вкл / выкл)"
+        }
+    ]
+}

@@ -1,0 +1,100 @@
+{
+    "metadata": {
+        "base": "en",
+        "language": "es",
+        "created": "2021-4-18",
+        "author": "Impeeza"
+    },
+    "strings": [
+        {
+            "context": "",
+            "source": "Active virtual amiibo: ",
+            "translation": "Аmiibo virtual activo: "
+        },
+        {
+            "context": "",
+            "source": "No active virtual amiibo",
+            "translation": "No hay amiibo virtual activo"
+        },
+        {
+            "context": "",
+            "source": "emuiibo was not accessed.",
+            "translation": "emuiibo no pudo ser accedido."
+        },
+        {
+            "context": "",
+            "source": "Emulation: ",
+            "translation": "Emulación: "
+        },
+        {
+            "context": "",
+            "source": "on",
+            "translation": "Encendido"
+        },
+        {
+            "context": "",
+            "source": "No active virtual amiibo.",
+            "translation": "No se ha seleccionado un amiibo virtual."
+        },
+        {
+            "context": "",
+            "source": "Virtual amiibo: ",
+            "translation": "Amiibo virtual: "
+        },
+        {
+            "context": "",
+            "source": " (connected - select to disconnect)",
+            "translation": " (Conectado - Selecciónelo para desconectarlo)"
+        },
+        {
+            "context": "",
+            "source": " (disconnected - select to connect)",
+            "translation": " (Desconectado - Selecciónelo para conectarlo)"
+        },
+        {
+            "context": "",
+            "source": "Current game is being intercepted by emuiibo.",
+            "translation": "Emuiibo está interceptando el juego actual."
+        },
+        {
+            "context": "",
+            "source": "Current game is not being intercepted.",
+            "translation": "Emuiibo NO está interceptando el juego actual."
+        },
+        {
+            "context": "",
+            "source": "off",
+            "translation": "Apagado"
+        },
+        {
+            "context": "",
+            "source": "Available virtual amiibos",
+            "translation": "Virtual amiibos disponibles"
+        },
+        {
+            "context": "",
+            "source": "Available categories",
+            "translation": "Categorías disponibles"
+        },
+        {
+            "context": "",
+            "source": "Off",
+            "translation": "Apagado"
+        },
+        {
+            "context": "",
+            "source": "On",
+            "translation": "Encendido"
+        },
+        {
+            "context": "",
+            "source": "View amiibo",
+            "translation": "Ver amiibo"
+        },
+        {
+            "context": "",
+            "source": "Manage emulation (on / off)",
+            "translation": "Encender/Apagar emulación"
+        }
+    ]
+}
