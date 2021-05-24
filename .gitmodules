@@ -1,3 +1,6 @@
 [submodule "libtesla"]
 	path = libtesla
 	url = https://github.com/WerWolv/libtesla
+[submodule "libtesla_extensions"]
+	path = libtesla_extensions
+	url = https://github.com/AD2076/libtesla_extensions

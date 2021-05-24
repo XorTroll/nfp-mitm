@@ -43,7 +43,7 @@ TARGET		:=	emuiibo
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data
-INCLUDES	:=	include ../libtesla/include
+INCLUDES	:=	include ../libtesla/include ../libtesla_extensions/include
 #ROMFS	:=	romfs
 
 #---------------------------------------------------------------------------------
