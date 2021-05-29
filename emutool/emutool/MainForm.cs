@@ -367,11 +367,15 @@ namespace emutool
             if (!CreateAllCheck.Checked)
             {
                 AmiiboNameBox.Text = AmiiboComboBox.Text;
+                LastPathCheck.Enabled = true;
+            }
+            {
+                DirectoryNameBox.Text = "AllAmiibos";
+                LastPathCheck.Enabled = false;
             }
             LastUsedPath = null;
             LastPathLabel.Visible = false;
             LastPathCheck.Checked = false;
-            LastPathCheck.Enabled = !LastPathCheck.Enabled;
             UseNameCheck.Enabled = !CreateAllCheck.Checked;
             AmiiboNameBox.Enabled = !CreateAllCheck.Checked;
             DirectoryNameBox.Enabled = !CreateAllCheck.Checked && !UseNameCheck.Checked;

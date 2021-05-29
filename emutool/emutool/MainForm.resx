@@ -120,7 +120,7 @@
   <data name="label2.Text" xml:space="preserve">
     <value>* By default, this tool generates a unique, random UUID for the virtual amiibo.
 
-However, if the option below is selected, it won't be generated,
+However, if the option is selected, it won't be generated,
 and emuiibo will instead use a different, random UUID
 each time the amiibo is accessed in a game.</value>
   </data>

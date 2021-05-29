@@ -347,7 +347,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(828, 20);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(808, 20);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel1
