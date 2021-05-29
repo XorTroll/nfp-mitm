@@ -238,11 +238,17 @@ namespace emutool
                 if(!FtpSaveCheck.Checked)
                 {
                     // If we're saving normally and we're not using the last path, ask the user for the path
-                    base_dir = SelectDirectory();
-                    if(base_dir == null)
+
+                    if (string.IsNullOrEmpty(LastUsedPath) || !LastPathCheck.Checked ) {
+                        base_dir = SelectDirectory();
+                        if (base_dir == null)
+                        {
+                            // User cancelled
+                            return;
+                        }
+                    } else
                     {
-                        // User cancelled
-                        return;
+                        base_dir = LastUsedPath;
                     }
                 }
 
@@ -274,6 +280,11 @@ namespace emutool
                 }
                 else
                 {
+                    if (SaveImageCheck.Checked)
+                    {
+                        MessageBox.Show("Generating all amiibos with images can take a minute. A Message will pop up once its done.");
+                    }
+
                     var actual_base_dir = base_dir;
                     AmiiboSeries = Amiibos.GetAmiiboSeries();
                     if (AmiiboSeries.Any())
@@ -295,6 +306,7 @@ namespace emutool
                                 MessageBox.Show("Ey, no amiibos");
                             }
                         }
+                        LastUsedPath = null;
                     }
                     else
                     {
@@ -308,7 +320,8 @@ namespace emutool
                 ExceptionUtils.LogExceptionMessage(ex);
             }
 
-            LastPathLabel.Visible = LastPathCheck.Visible = !string.IsNullOrEmpty(LastUsedPath);
+            LastPathLabel.Visible = !string.IsNullOrEmpty(LastUsedPath);
+            LastPathCheck.Enabled = !string.IsNullOrEmpty(LastUsedPath);
             if (LastPathLabel.Visible)
             {
                 LastPathLabel.Text = "Last path: " + LastUsedPath;
@@ -358,12 +371,29 @@ namespace emutool
             LastUsedPath = null;
             LastPathLabel.Visible = false;
             LastPathCheck.Checked = false;
+            LastPathCheck.Enabled = !LastPathCheck.Enabled;
             UseNameCheck.Enabled = !CreateAllCheck.Checked;
             AmiiboNameBox.Enabled = !CreateAllCheck.Checked;
             DirectoryNameBox.Enabled = !CreateAllCheck.Checked && !UseNameCheck.Checked;
             SeriesComboBox.Enabled = !CreateAllCheck.Checked;
             AmiiboComboBox.Enabled = !CreateAllCheck.Checked;
             AmiiboPictureBox.Visible = !CreateAllCheck.Checked;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LastPathCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!LastPathCheck.Checked) {
+                // LastUsedPath = null;
+                LastPathLabel.Visible = false;
+            } else
+            {
+                LastPathLabel.Visible = !string.IsNullOrEmpty(LastUsedPath);
+            }
         }
     }
 }
