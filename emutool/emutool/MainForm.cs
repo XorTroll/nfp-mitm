@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -274,7 +274,7 @@ namespace emutool
                 }
                 else
                 {
-                    var actual_base_dir = base_dir;
+                    var actual_base_dir = "";
                     AmiiboSeries = Amiibos.GetAmiiboSeries();
                     if (AmiiboSeries.Any())
                     {
