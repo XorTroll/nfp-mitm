@@ -34,7 +34,6 @@
             this.RandomizeUuidCheck = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.CreateAllCheck = new System.Windows.Forms.CheckBox();
             this.UseNameCheck = new System.Windows.Forms.CheckBox();
             this.DirectoryNameBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -45,6 +44,7 @@
             this.FtpAddressBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.FtpSaveCheck = new System.Windows.Forms.CheckBox();
+            this.CreateAllCheck = new System.Windows.Forms.CheckBox();
             this.CreateButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -68,30 +68,33 @@
             // 
             // AmiiboNameBox
             // 
-            this.AmiiboNameBox.Location = new System.Drawing.Point(124, 25);
+            this.AmiiboNameBox.Location = new System.Drawing.Point(165, 31);
+            this.AmiiboNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AmiiboNameBox.MaxLength = 10;
             this.AmiiboNameBox.Name = "AmiiboNameBox";
-            this.AmiiboNameBox.Size = new System.Drawing.Size(255, 20);
+            this.AmiiboNameBox.Size = new System.Drawing.Size(339, 22);
             this.AmiiboNameBox.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 28);
+            this.label1.Location = new System.Drawing.Point(20, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Name:";
             // 
             // RandomizeUuidCheck
             // 
             this.RandomizeUuidCheck.AutoSize = true;
-            this.RandomizeUuidCheck.Location = new System.Drawing.Point(18, 202);
+            this.RandomizeUuidCheck.Location = new System.Drawing.Point(165, 242);
+            this.RandomizeUuidCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.RandomizeUuidCheck.Name = "RandomizeUuidCheck";
-            this.RandomizeUuidCheck.Size = new System.Drawing.Size(168, 17);
+            this.RandomizeUuidCheck.Size = new System.Drawing.Size(227, 21);
             this.RandomizeUuidCheck.TabIndex = 4;
-            this.RandomizeUuidCheck.Text = "Randomize UUID in emulation";
+            this.RandomizeUuidCheck.Text = "Randomize UUID in emulation *";
             this.RandomizeUuidCheck.UseVisualStyleBackColor = true;
             this.RandomizeUuidCheck.CheckedChanged += new System.EventHandler(this.CheckBox1_CheckedChanged);
             // 
@@ -99,9 +102,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 125);
+            this.label2.Location = new System.Drawing.Point(20, 267);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(361, 65);
+            this.label2.Size = new System.Drawing.Size(493, 85);
             this.label2.TabIndex = 5;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -112,6 +116,7 @@
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.FtpPortBox);
+            this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.SaveImageCheck);
             this.groupBox2.Controls.Add(this.label1);
@@ -121,89 +126,87 @@
             this.groupBox2.Controls.Add(this.AmiiboNameBox);
             this.groupBox2.Controls.Add(this.FtpSaveCheck);
             this.groupBox2.Controls.Add(this.RandomizeUuidCheck);
-            this.groupBox2.Location = new System.Drawing.Point(418, 12);
+            this.groupBox2.Location = new System.Drawing.Point(339, 15);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(396, 341);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Size = new System.Drawing.Size(520, 416);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2 - Generation settings";
-            // 
-            // CreateAllCheck
-            // 
-            this.CreateAllCheck.AutoSize = true;
-            this.CreateAllCheck.Location = new System.Drawing.Point(51, 514);
-            this.CreateAllCheck.Name = "CreateAllCheck";
-            this.CreateAllCheck.Size = new System.Drawing.Size(294, 17);
-            this.CreateAllCheck.TabIndex = 11;
-            this.CreateAllCheck.Text = "Generate all amiibos at once, instead of the selected one";
-            this.CreateAllCheck.UseVisualStyleBackColor = true;
-            this.CreateAllCheck.CheckedChanged += new System.EventHandler(this.generateAllAmibosCheck_CheckedChanged);
             // 
             // UseNameCheck
             // 
             this.UseNameCheck.AutoSize = true;
             this.UseNameCheck.Checked = true;
             this.UseNameCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.UseNameCheck.Location = new System.Drawing.Point(124, 77);
+            this.UseNameCheck.Location = new System.Drawing.Point(165, 95);
+            this.UseNameCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UseNameCheck.Name = "UseNameCheck";
-            this.UseNameCheck.Size = new System.Drawing.Size(160, 17);
+            this.UseNameCheck.Size = new System.Drawing.Size(256, 21);
             this.UseNameCheck.TabIndex = 10;
-            this.UseNameCheck.Text = "Use name as directory name";
+            this.UseNameCheck.Text = "Use amiibo name as directory name";
             this.UseNameCheck.UseVisualStyleBackColor = true;
             this.UseNameCheck.CheckedChanged += new System.EventHandler(this.CheckBox3_CheckedChanged);
             // 
             // DirectoryNameBox
             // 
             this.DirectoryNameBox.Enabled = false;
-            this.DirectoryNameBox.Location = new System.Drawing.Point(124, 51);
+            this.DirectoryNameBox.Location = new System.Drawing.Point(165, 63);
+            this.DirectoryNameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DirectoryNameBox.MaxLength = 10;
             this.DirectoryNameBox.Name = "DirectoryNameBox";
-            this.DirectoryNameBox.Size = new System.Drawing.Size(255, 20);
+            this.DirectoryNameBox.Size = new System.Drawing.Size(339, 22);
             this.DirectoryNameBox.TabIndex = 9;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(229, 294);
+            this.label8.Location = new System.Drawing.Point(20, 214);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.Size = new System.Drawing.Size(43, 17);
             this.label8.TabIndex = 13;
             this.label8.Text = "Port:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 313);
+            this.label9.Location = new System.Drawing.Point(121, 185);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(32, 13);
+            this.label9.Size = new System.Drawing.Size(36, 17);
             this.label9.TabIndex = 11;
             this.label9.Text = "ftp://";
             // 
             // FtpPortBox
             // 
             this.FtpPortBox.Enabled = false;
-            this.FtpPortBox.Location = new System.Drawing.Point(230, 310);
+            this.FtpPortBox.Location = new System.Drawing.Point(165, 212);
+            this.FtpPortBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FtpPortBox.Name = "FtpPortBox";
-            this.FtpPortBox.Size = new System.Drawing.Size(149, 20);
+            this.FtpPortBox.Size = new System.Drawing.Size(339, 22);
             this.FtpPortBox.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 54);
+            this.label5.Location = new System.Drawing.Point(20, 66);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 13);
+            this.label5.Size = new System.Drawing.Size(123, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "Directory name:";
             // 
             // SaveImageCheck
             // 
             this.SaveImageCheck.AutoSize = true;
-            this.SaveImageCheck.Location = new System.Drawing.Point(18, 247);
+            this.SaveImageCheck.Location = new System.Drawing.Point(165, 124);
+            this.SaveImageCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SaveImageCheck.Name = "SaveImageCheck";
-            this.SaveImageCheck.Size = new System.Drawing.Size(245, 17);
+            this.SaveImageCheck.Size = new System.Drawing.Size(323, 21);
             this.SaveImageCheck.TabIndex = 7;
             this.SaveImageCheck.Text = "Save the amiibo\'s image along with the amiibo.";
             this.SaveImageCheck.UseVisualStyleBackColor = true;
@@ -211,37 +214,53 @@
             // FtpAddressBox
             // 
             this.FtpAddressBox.Enabled = false;
-            this.FtpAddressBox.Location = new System.Drawing.Point(53, 310);
+            this.FtpAddressBox.Location = new System.Drawing.Point(165, 182);
+            this.FtpAddressBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FtpAddressBox.Name = "FtpAddressBox";
-            this.FtpAddressBox.Size = new System.Drawing.Size(149, 20);
+            this.FtpAddressBox.Size = new System.Drawing.Size(339, 22);
             this.FtpAddressBox.TabIndex = 12;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(55, 294);
+            this.label6.Location = new System.Drawing.Point(20, 184);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(72, 17);
             this.label6.TabIndex = 11;
             this.label6.Text = "Address:";
             // 
             // FtpSaveCheck
             // 
             this.FtpSaveCheck.AutoSize = true;
-            this.FtpSaveCheck.Location = new System.Drawing.Point(18, 270);
+            this.FtpSaveCheck.Location = new System.Drawing.Point(165, 153);
+            this.FtpSaveCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.FtpSaveCheck.Name = "FtpSaveCheck";
-            this.FtpSaveCheck.Size = new System.Drawing.Size(184, 17);
+            this.FtpSaveCheck.Size = new System.Drawing.Size(242, 21);
             this.FtpSaveCheck.TabIndex = 11;
             this.FtpSaveCheck.Text = "Upload generated amiibos to FTP";
             this.FtpSaveCheck.UseVisualStyleBackColor = true;
             this.FtpSaveCheck.CheckedChanged += new System.EventHandler(this.chkFTP_CheckedChanged);
             // 
+            // CreateAllCheck
+            // 
+            this.CreateAllCheck.AutoSize = true;
+            this.CreateAllCheck.Location = new System.Drawing.Point(8, 23);
+            this.CreateAllCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CreateAllCheck.Name = "CreateAllCheck";
+            this.CreateAllCheck.Size = new System.Drawing.Size(211, 21);
+            this.CreateAllCheck.TabIndex = 11;
+            this.CreateAllCheck.Text = "Generate all amiibos at once";
+            this.CreateAllCheck.UseVisualStyleBackColor = true;
+            this.CreateAllCheck.CheckedChanged += new System.EventHandler(this.generateAllAmibosCheck_CheckedChanged);
+            // 
             // CreateButton
             // 
-            this.CreateButton.Location = new System.Drawing.Point(15, 61);
+            this.CreateButton.Location = new System.Drawing.Point(8, 52);
+            this.CreateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CreateButton.Name = "CreateButton";
-            this.CreateButton.Size = new System.Drawing.Size(361, 34);
+            this.CreateButton.Size = new System.Drawing.Size(496, 42);
             this.CreateButton.TabIndex = 7;
             this.CreateButton.Text = "Create virtual amiibo";
             this.CreateButton.UseVisualStyleBackColor = true;
@@ -252,9 +271,10 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.SystemColors.Control;
             this.label3.ForeColor = System.Drawing.Color.DimGray;
-            this.label3.Location = new System.Drawing.Point(473, 530);
+            this.label3.Location = new System.Drawing.Point(20, 375);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(291, 13);
+            this.label3.Size = new System.Drawing.Size(391, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "In console, emuiibo will generate a random mii for the amiibo.";
             // 
@@ -264,9 +284,11 @@
             this.groupBox3.Controls.Add(this.LastPathLabel);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.CreateButton);
-            this.groupBox3.Location = new System.Drawing.Point(418, 358);
+            this.groupBox3.Location = new System.Drawing.Point(339, 439);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(396, 112);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Size = new System.Drawing.Size(520, 122);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "3 - Generate the virtual amiibo";
@@ -276,22 +298,25 @@
             this.LastPathCheck.AutoSize = true;
             this.LastPathCheck.Checked = true;
             this.LastPathCheck.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.LastPathCheck.Location = new System.Drawing.Point(15, 34);
+            this.LastPathCheck.Enabled = false;
+            this.LastPathCheck.Location = new System.Drawing.Point(8, 23);
+            this.LastPathCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.LastPathCheck.Name = "LastPathCheck";
-            this.LastPathCheck.Size = new System.Drawing.Size(155, 17);
+            this.LastPathCheck.Size = new System.Drawing.Size(204, 21);
             this.LastPathCheck.TabIndex = 17;
             this.LastPathCheck.Text = "Create in the last used path\n";
             this.LastPathCheck.UseVisualStyleBackColor = true;
-            this.LastPathCheck.Visible = false;
+            this.LastPathCheck.CheckedChanged += new System.EventHandler(this.LastPathCheck_CheckedChanged);
             // 
             // LastPathLabel
             // 
             this.LastPathLabel.AutoSize = true;
             this.LastPathLabel.BackColor = System.Drawing.SystemColors.Control;
             this.LastPathLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.LastPathLabel.Location = new System.Drawing.Point(12, 18);
+            this.LastPathLabel.Location = new System.Drawing.Point(8, 98);
+            this.LastPathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LastPathLabel.Name = "LastPathLabel";
-            this.LastPathLabel.Size = new System.Drawing.Size(42, 13);
+            this.LastPathLabel.Size = new System.Drawing.Size(55, 17);
             this.LastPathLabel.TabIndex = 16;
             this.LastPathLabel.Text = "Dummy";
             this.LastPathLabel.Visible = false;
@@ -299,19 +324,22 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 92);
+            this.label7.Location = new System.Drawing.Point(16, 113);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(0, 13);
+            this.label7.Size = new System.Drawing.Size(0, 17);
             this.label7.TabIndex = 11;
             // 
             // statusStrip1
             // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 567);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 612);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(826, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(873, 26);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 10;
             this.statusStrip1.Text = "statusStrip1";
@@ -319,22 +347,23 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(776, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(808, 20);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Image = global::emutool.Properties.Resources.OkIcon;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(35, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(45, 20);
             this.toolStripStatusLabel1.Text = "    ";
             this.toolStripStatusLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
             // AmiiboPictureBox
             // 
-            this.AmiiboPictureBox.Location = new System.Drawing.Point(17, 63);
+            this.AmiiboPictureBox.Location = new System.Drawing.Point(8, 124);
+            this.AmiiboPictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AmiiboPictureBox.Name = "AmiiboPictureBox";
-            this.AmiiboPictureBox.Size = new System.Drawing.Size(362, 434);
+            this.AmiiboPictureBox.Size = new System.Drawing.Size(302, 414);
             this.AmiiboPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.AmiiboPictureBox.TabIndex = 0;
             this.AmiiboPictureBox.TabStop = false;
@@ -343,9 +372,10 @@
             // 
             this.SeriesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SeriesComboBox.FormattingEnabled = true;
-            this.SeriesComboBox.Location = new System.Drawing.Point(17, 29);
+            this.SeriesComboBox.Location = new System.Drawing.Point(8, 52);
+            this.SeriesComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SeriesComboBox.Name = "SeriesComboBox";
-            this.SeriesComboBox.Size = new System.Drawing.Size(177, 21);
+            this.SeriesComboBox.Size = new System.Drawing.Size(302, 24);
             this.SeriesComboBox.TabIndex = 1;
             this.SeriesComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
@@ -353,9 +383,10 @@
             // 
             this.AmiiboComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AmiiboComboBox.FormattingEnabled = true;
-            this.AmiiboComboBox.Location = new System.Drawing.Point(202, 29);
+            this.AmiiboComboBox.Location = new System.Drawing.Point(8, 84);
+            this.AmiiboComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AmiiboComboBox.Name = "AmiiboComboBox";
-            this.AmiiboComboBox.Size = new System.Drawing.Size(177, 21);
+            this.AmiiboComboBox.Size = new System.Drawing.Size(302, 24);
             this.AmiiboComboBox.TabIndex = 2;
             this.AmiiboComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -365,18 +396,22 @@
             this.groupBox1.Controls.Add(this.AmiiboComboBox);
             this.groupBox1.Controls.Add(this.SeriesComboBox);
             this.groupBox1.Controls.Add(this.AmiiboPictureBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(13, 15);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 547);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(318, 546);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "1 - Choose a virtual amiibo";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // AboutButton
             // 
-            this.AboutButton.Location = new System.Drawing.Point(437, 494);
+            this.AboutButton.Location = new System.Drawing.Point(13, 569);
+            this.AboutButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AboutButton.Name = "AboutButton";
-            this.AboutButton.Size = new System.Drawing.Size(362, 28);
+            this.AboutButton.Size = new System.Drawing.Size(846, 34);
             this.AboutButton.TabIndex = 12;
             this.AboutButton.Text = "About emuiibo and emutool";
             this.AboutButton.UseVisualStyleBackColor = true;
@@ -384,17 +419,17 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 589);
+            this.ClientSize = new System.Drawing.Size(873, 638);
             this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
